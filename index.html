@@ -1,211 +1,49 @@
-<!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Asistente DGT · Alegaciones (20 días) / Recurso (1 mes)</title>
-<style>
-  :root{--brand:#0b57d0;--bg:#f7f8fa;--line:#e5e7eb}
-  body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Arial,sans-serif;background:var(--bg);margin:0}
-  .wrap{max-width:920px;margin:24px auto;padding:0 16px}
-  .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 1px 3px rgba(0,0,0,.05);padding:18px;margin:18px 0}
-  h1{margin:6px 0 2px;font-size:1.6rem}
-  .sub{color:#4b5563;margin:0 0 14px}
-  fieldset{border:0;margin:0;padding:0}
-  legend{font-weight:700;margin-bottom:10px}
-  label{display:block;margin:10px 0 6px;font-weight:600}
-  .help{color:#6b7280;font-size:.9rem;margin-top:2px}
-  input[type="text"],input[type="email"],input[type="tel"],input[type="date"],select,textarea{
-    width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:10px;background:#fff}
-  textarea{min-height:120px}
-  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .inline{display:flex;flex-wrap:wrap;gap:14px}
-  .radio-row label,.cb-row label{display:flex;align-items:flex-start;gap:8px;font-weight:500}
-  .radio-row input,.cb-row input{margin-top:2px}
-  .hint{color:#6b7280;font-size:.9rem}
-  .req::after{content:" *";color:#d00}
-  button{padding:12px 18px;border:0;border-radius:12px;background:var(--brand);color:#fff;font-weight:700;cursor:pointer}
-  .notice{background:#f9fafb;border:1px dashed var(--line);border-radius:12px;padding:10px 12px;margin-top:8px;font-size:.92rem}
-</style>
-</head>
-<body>
+<!doctype html><html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tu Oficina Online · Trámites sencillos en España</title>
+<link rel="stylesheet" href="style.css">
+</head><body>
+<nav class="nav"><div class="wrap">
+  <a class="logo" href="index.html">Tu Oficina Online</a>
+  <a href="dgt-multas.html" class="btn">DGT · Multas</a>
+  <a href="herencias.html" class="btn">Herencias</a>
+  <a href="contacto.html" class="btn">Contacto</a>
+  <div class="spacer"></div>
+  <a href="aviso-legal.html" class="btn">Legal</a>
+</div></nav>
+
 <div class="wrap">
-  <h1>Asistente DGT: Alegaciones / Recurso</h1>
-  <p class="sub">Formulario en español. Calcularemos plazos y generaremos tu documento listo para registrar.</p>
+  <h1>Trámites útiles y claros</h1>
+  <p class="sub">Asistentes paso a paso para ciudadanos en España. Documentos listos para registrar.</p>
 
-  <form action="https://hook.eu2.make.com/0etdj4z1ikb4y0sa5khlq12dlnbpw26d" method="POST" enctype="multipart/form-data" id="form-dgt">
-    
-    <div class="card">
-      <fieldset>
-        <legend>1) Datos personales</legend>
-        <div class="row">
-          <div>
-            <label class="req" for="nombre">Nombre</label>
-            <input id="nombre" name="nombre" type="text" required>
-          </div>
-          <div>
-            <label class="req" for="apellidos">Apellidos</label>
-            <input id="apellidos" name="apellidos" type="text" required>
-          </div>
-        </div>
-        <div class="row">
-          <div>
-            <label class="req" for="nif">DNI/NIE/CIF</label>
-            <input id="nif" name="nif" type="text" required>
-          </div>
-          <div>
-            <label for="telefono">Teléfono <span class="hint">(opcional)</span></label>
-            <input id="telefono" name="telefono" type="tel" placeholder="612 34 56 78">
-          </div>
-        </div>
-        <label class="req" for="email">Correo electrónico</label>
-        <input id="email" name="email" type="email" required>
-        <label class="req" for="domicilio">Domicilio a efectos de notificaciones</label>
-        <input id="domicilio" name="domicilio" type="text" required>
-        <div class="row">
-          <div>
-            <label for="localidad">Localidad <span class="hint">(opcional)</span></label>
-            <input id="localidad" name="localidad" type="text">
-          </div>
-          <div>
-            <label for="provincia">Provincia <span class="hint">(opcional)</span></label>
-            <input id="provincia" name="provincia" type="text">
-          </div>
-        </div>
-        <label for="cp">Código postal <span class="hint">(opcional)</span></label>
-        <input id="cp" name="cp" type="text">
-      </fieldset>
-    </div>
+  <div class="card">
+    <h2>DGT · Alegaciones (20 días) / Recurso (1 mes)</h2>
+    <p>Genera tu escrito con checklist y anexos. <a href="dgt-multas.html">Ir al asistente</a>.</p>
+  </div>
 
-    <div class="card">
-      <fieldset>
-        <legend>2) Representación</legend>
-        <div class="inline radio-row">
-          <label><input type="radio" name="es_representante" value="no" checked> No actúo como representante</label>
-          <label><input type="radio" name="es_representante" value="si"> Sí, represento a otra persona</label>
-        </div>
-        <div id="bloque-rep" class="notice" style="display:none">
-          <div class="row">
-            <div>
-              <label class="req" for="nombre_representado">Nombre del representado</label>
-              <input id="nombre_representado" name="nombre_representado" type="text">
-            </div>
-            <div>
-              <label class="req" for="nif_representado">DNI/NIE del representado</label>
-              <input id="nif_representado" name="nif_representado" type="text">
-            </div>
-          </div>
-          <label for="autorizacion">Autorización de representación (PDF/JPG/PNG)</label>
-          <input id="autorizacion" name="autorizacion" type="file" accept=".pdf,.jpg,.jpeg,.png">
-          <div class="help">Solo si presentas en nombre de otra persona.</div>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="card">
-      <fieldset>
-        <legend>3) Datos del expediente</legend>
-        <div class="row">
-          <div>
-            <label class="req" for="expediente">Nº de expediente DGT</label>
-            <input id="expediente" name="expediente" type="text" required>
-          </div>
-          <div>
-            <label class="req" for="matricula">Matrícula</label>
-            <input id="matricula" name="matricula" type="text" required>
-          </div>
-        </div>
-        <div class="inline radio-row">
-          <label><input type="radio" name="tipo_tramite" value="ALEGACIONES" required> Alegaciones (20 días)</label>
-          <label><input type="radio" name="tipo_tramite" value="RECURSO" required> Recurso de reposición (1 mes)</label>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="card">
-      <fieldset>
-        <legend>4) Notificación</legend>
-        <label class="req" for="tipo_notificacion">¿Cómo recibiste la notificación?</label>
-        <select id="tipo_notificacion" name="tipo_notificacion" required>
-          <option value="">— Selecciona —</option>
-          <option value="boletin">Boletín en el acto</option>
-          <option value="postal">Postal (carta)</option>
-          <option value="dev_leida">DEV leída</option>
-          <option value="dev_no_leida">DEV no leída</option>
-          <option value="dehu_leida">DEHú leída</option>
-          <option value="dehu_no_leida">DEHú no leída</option>
-          <option value="edictos">Edictos (TEU/BOE)</option>
-        </select>
-
-        <div class="row">
-          <div>
-            <label class="req" for="fecha_evento">Fecha de notificación / lectura / puesta</label>
-            <input id="fecha_evento" name="fecha_evento" type="date" required>
-          </div>
-          <div id="bloque-res" style="display:none">
-            <label for="fecha_resolucion">Fecha de la resolución (solo si es Recurso)</label>
-            <input id="fecha_resolucion" name="fecha_resolucion" type="date">
-          </div>
-        </div>
-      </fieldset>
-    </div>
-
-    <div class="card">
-      <fieldset>
-        <legend>5) Motivos y pruebas</legend>
-        <div class="cb-row">
-          <label><input type="checkbox" name="motivos[]" value="error_identificacion"> Error de identificación o datos</label>
-          <label><input type="checkbox" name="motivos[]" value="notificacion_plazos"> Problemas de notificación/plazos</label>
-          <label><input type="checkbox" name="motivos[]" value="senalizacion"> Señalización insuficiente/incorrecta</label>
-          <label><input type="checkbox" name="motivos[]" value="medicion_radar"> Medición: certificado de verificación del radar</label>
-          <label><input type="checkbox" name="motivos[]" value="no_conductor"> No era yo el conductor / vehículo cedido</label>
-          <label><input type="checkbox" name="motivos[]" value="circunstancias"> Circunstancias excepcionales (fuerza mayor)</label>
-        </div>
-
-        <label class="req" for="relato_hechos">Cuéntanos qué pasó (hechos)</label>
-        <textarea id="relato_hechos" name="relato_hechos" required></textarea>
-
-        <label for="pruebas_texto">¿Qué pruebas tienes? (breve)</label>
-        <input id="pruebas_texto" name="pruebas_texto" type="text" placeholder="Fotos de señales, contrato de alquiler…">
-
-        <label for="pruebas_archivos">Subir pruebas (PDF/JPG/PNG/MP4)</label>
-        <input id="pruebas_archivos" name="pruebas_archivos[]" type="file" accept=".pdf,.jpg,.jpeg,.png,.mp4" multiple>
-      </fieldset>
-    </div>
-
-    <div class="card">
-      <fieldset>
-        <legend>6) Confirmación</legend>
-        <div class="cb-row">
-          <label><input type="checkbox" name="check_veracidad" required> Declaro que la información enviada es veraz y los documentos son auténticos.</label>
-          <label><input type="checkbox" name="check_rgpd" required> Acepto el uso de mis datos para generar y enviarme el documento.</label>
-        </div>
-        <div class="notice"><strong>AVISO:</strong> Este asistente documental NO sustituye a ningún profesional
-          (abogado, gestor o administrador). Está pensado para trámites sencillos que no lo requieren. Puedes contactar con un profesional cuando quieras.</div>
-      </fieldset>
-    </div>
-
-    <div class="wrap" style="padding:0">
-      <button type="submit">Enviar</button>
-    </div>
-  </form>
+  <div class="card">
+    <h2>Herencias (próximamente)</h2>
+    <p>Guía y modelos para aceptación de herencia, plusvalía, etc. <a href="herencias.html">Más info</a>.</p>
+  </div>
 </div>
 
+<footer class="footer"><div class="wrap">
+  <div class="small">
+    <strong>Aviso:</strong> Página no oficial del Estado. Servicio automatizado para trámites sencillos.
+    No sustituye a profesionales. <a href="aviso-legal.html">Aviso legal</a> ·
+    <a href="privacidad.html">Privacidad</a> · <a href="cookies.html">Cookies</a>
+  </div>
+</div></footer>
+
 <script>
-// mostrar/ocultar bloque de representación
-document.querySelectorAll('input[name="es_representante"]').forEach(r=>{
-  r.addEventListener('change',()=>{
-    const show = r.value==="si" && r.checked;
-    document.getElementById('bloque-rep').style.display = show ? 'block' : 'none';
-  });
-});
-// mostrar fecha resolución solo si RECURSO
-document.querySelectorAll('input[name="tipo_tramite"]').forEach(r=>{
-  r.addEventListener('change',()=>{
-    const show = r.value==="RECURSO" && r.checked;
-    document.getElementById('bloque-res').style.display = show ? 'block' : 'none';
-  });
-});
+// Banner de cookies (simple, sin seguimiento)
+if(!localStorage.getItem('consent')){
+  const b=document.createElement('div');b.className='banner';
+  b.innerHTML=`<p>Usamos solo cookies técnicas necesarias. Sin seguimiento. Puedes aceptar o continuar sin ellas.</p>
+  <div class="rowb"><button id="acc">Aceptar</button><button class="ghost" id="rech">Rechazar</button><a class="ghost" href="cookies.html">Saber más</a></div>`;
+  document.body.appendChild(b); b.style.display='block';
+  document.getElementById('acc').onclick=()=>{localStorage.setItem('consent','yes');b.remove();}
+  document.getElementById('rech').onclick=()=>{localStorage.setItem('consent','no');b.remove();}
+}
 </script>
-</body>
-</html>
+</body></html>
