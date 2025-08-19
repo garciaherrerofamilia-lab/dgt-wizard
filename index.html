@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Multas DGT · Alegaciones / Recurso</title>
+<style>
+body{font-family:system-ui,Arial,sans-serif;max-width:840px;margin:24px auto;padding:0 16px;line-height:1.5}
+fieldset{border:1px solid #ddd;border-radius:12px;padding:16px;margin:16px 0}
+legend{font-weight:700}label{display:block;margin:10px 0 6px}
+input,select,textarea{width:100%;padding:10px;border:1px solid #cbd5e1;border-radius:8px}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.hidden{display:none}
+button{padding:12px 18px;border:0;border-radius:10px;background:#1e40af;color:#fff;font-weight:700;cursor:pointer}
+.hint{color:#555;font-size:.9em}
+</style></head><body>
+<h1>Asistente DGT: Alegaciones (20 días) / Recurso (1 mes)</h1>
+<p class="hint">Todo en español. Al enviar, verás confirmación.</p>
+
+<form action="PON_AQUI_TU_WEBHOOK" method="POST" enctype="multipart/form-data" id="form-dgt">
+  <fieldset><legend>1) Datos personales</legend>
+    <div class="row"><div><label>Nombre *</label><input name="nombre" required></div>
+    <div><label>Apellidos *</label><input name="apellidos" required></div></div>
+    <div class="row"><div><label>DNI/NIE/CIF *</label><input name="nif" required></div>
+    <div><label>Teléfono</label><input name="telefono"></div></div>
+    <label>Correo electrónico *</label><input type="email" name="email" required>
+    <label>Domicilio a efectos de notificaciones *</label><input name="domicilio" required>
+    <div class="row"><div><label>Localidad *</label><input name="localidad" required></div>
+    <div><label>Provincia *</label><input name="provincia" required></div></div>
+    <label>Código postal *</label><input name="cp" required>
+  </fieldset>
+
+  <fieldset><legend>2) ¿Actúas como representante?</legend>
+    <label><input type="radio" name="es_representante" value="no" checked> No</label>
+    <label><input type="radio" name="es_representante" value="si"> Sí</label>
+    <div id="rep" class="hidden">
+      <div class="row"><div><label>Nombre del representado *</label><input name="nombre_representado"></div>
+      <div><label>DNI/NIE del representado *</label><input name="nif_representado"></div></div>
+      <label>Autorización (PDF/JPG/PNG)</label><input type="file" name="autorizacion" accept=".pdf,.jpg,.jpeg,.png">
+    </div>
+  </fieldset>
+
+  <fieldset><legend>3) Expediente</legend>
+    <div class="row"><div><label>Nº de expediente DGT *</label><input name="expediente" required></div>
+    <div><label>Matrícula *</label><input name="matricula" required></div></div>
+    <label>Tipo de trámite *</label>
+    <label><input type="radio" name="tipo_tramite" value="ALEGACIONES" required> Alegaciones (20 días)</label>
+    <label><input type="radio" name="tipo_tramite" value="RECURSO" required> Recurso de reposición (1 mes)</label>
+  </fieldset>
+
+  <fieldset><legend>4) Notificación</legend>
+    <label>¿Cómo recibiste la notificación? *</label>
+    <select name="tipo_notificacion" required>
+      <option value="">— Selecciona —</option>
+      <option value="boletin">Boletín en el acto</option>
+      <option value="postal">Postal</option>
+      <option value="dev_leida">DEV leída</option>
+      <option value="dev_no_leida">DEV no leída</option>
+      <option value="dehu_leida">DEHú leída</option>
+      <option value="dehu_no_leida">DEHú no leída</option>
+      <option value="edictos">Edictos (TEU/BOE)</option>
+    </select>
+    <div class="row"><div><label>Fecha notificación/lectura/puesta *</label><input type="date" name="fecha_evento" required></div>
+    <div id="res" class="hidden"><label>Fecha de resolución (si Recurso)</label><input type="date" name="fecha_resolucion"></div></div>
+  </fieldset>
+
+  <fieldset><legend>5) Motivos y pruebas</legend>
+    <label><input type="checkbox" name="motivos[]" value="error_identificacion"> Error de identificación o datos</label>
+    <label><input type="checkbox" name="motivos[]" value="notificacion_plazos"> Problemas de notificación/plazos</label>
+    <label><input type="checkbox" name="motivos[]" value="senalizacion"> Señalización insuficiente/incorrecta</label>
+    <label><input type="checkbox" name="motivos[]" value="medicion_radar"> Medición: certificado radar</label>
+    <label><input type="checkbox" name="motivos[]" value="no_conductor"> No era yo el conductor</label>
+    <label><input type="checkbox" name="motivos[]" value="circunstancias"> Circunstancias excepcionales</label>
+    <label>Hechos (cuéntanos qué pasó) *</label><textarea name="relato_hechos" required></textarea>
+    <label>¿Qué pruebas tienes? (breve)</label><input name="pruebas_texto">
+    <label>Subir pruebas (PDF/JPG/PNG/MP4)</label><input type="file" name="pruebas_archivos[]" accept=".pdf,.jpg,.jpeg,.png,.mp4" multiple>
+  </fieldset>
+
+  <fieldset><legend>6) Confirmación</legend>
+    <label><input type="checkbox" name="check_veracidad" required> Declaro que lo aportado es veraz.</label>
+    <label><input type="checkbox" name="check_rgpd" required> Acepto el tratamiento de mis datos para generar y enviarme el documento.</label>
+    <p class="hint"><strong>AVISO:</strong> Este asistente documental NO sustituye a ningún profesional (abogado, gestor o administrador). Es para trámites sencillos; contacta con un profesional cuando quieras.</p>
+  </fieldset>
+
+  <button type="submit">Enviar</button>
+</form>
+
+<script>
+document.querySelectorAll('input[name="es_representante"]').forEach(r=>{
+  r.addEventListener('change',()=>document.getElementById('rep').classList.toggle('hidden', r.value!=="si" || !r.checked));
+});
+document.querySelectorAll('input[name="tipo_tramite"]').forEach(r=>{
+  r.addEventListener('change',()=>document.getElementById('res').classList.toggle('hidden', !(r.value==="RECURSO" && r.checked)));
+});
+</script>
+</body></html>
